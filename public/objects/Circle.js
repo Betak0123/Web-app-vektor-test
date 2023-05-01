@@ -6,11 +6,42 @@ class Circle {
         this.pos = createVector(x, y)
         this.vel = createVector(0, 0)
         this.keypress
-        this.speed = 3
-        this.radius = 32
+        this.speed = 5
+        this.radius = 50
 
     }
-        update() {
+        update(down, up, left, right) {
+
+            if(up){
+                this.vel.set(0,-this.speed)
+            }
+            if(down){
+                this.vel.set(0,this.speed)
+            }
+            if(right){
+                this.vel.set(this.speed,0)
+            }
+            if(left){
+                this.vel.set(-this.speed,0)
+            }
+            if(up && left){
+                this.vel.set(-this.speed,-this.speed)
+            }
+            if(up && right){
+                this.vel.set(this.speed,-this.speed)
+            }
+            if(down && right){
+                this.vel.set(this.speed,this.speed)
+            }
+            if(down && left){
+                this.vel.set(-this.speed,this.speed)
+            }
+            if(!down && !right && !up && !left){
+                this.vel.set(0,0)
+            }
+            this.pos.add(this.vel)
+
+
             if(keyIsDown(UP_ARROW)){
                 this.vel.set(0,-this.speed)
             }
@@ -38,14 +69,10 @@ class Circle {
             if(!keyIsDown(DOWN_ARROW) && !keyIsDown(RIGHT_ARROW) && !keyIsDown(UP_ARROW) && !keyIsDown(LEFT_ARROW)){
                 this.vel.set(0,0)
             }
-            
-
-
-            
-            
-
             this.pos.add(this.vel)
         }
+
+
 
         show() {
             stroke(255)
@@ -54,4 +81,3 @@ class Circle {
             ellipse(this.pos.x, this.pos.y, this.radius)
         }
 }
-
