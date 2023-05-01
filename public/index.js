@@ -1,5 +1,6 @@
-let puk, circle, socket
-let up, down, left , right
+let puk, circleRed, circleBlue, socket
+let upR, downR, leftR , rightR
+let upB, downB, leftB , rightB
 let transTime = 60
 let VandO = transTime
 let VandN = transTime
@@ -34,25 +35,86 @@ function setup(){
     stroke('yellow');
     strokeWeight(15)
     puk = new Puk(windowWidth/2, windowHeight/2, score1)
-    circle = new Circle(3*windowWidth/4, windowHeight/2)
+    circleRed = new CircleRed(9*windowWidth/10, windowHeight/2)
+    circleBlue = new CircleBlue(windowWidth/10, windowHeight/2)
     
     socket = io()
 
     socket.on('movement', (msg) => {
-        if(msg =='DOWN'){
-            down = true
+        if(msg =='DOWNR'){
+            downR = true
+            upR = false
         }
-        if(msg == 'UP'){
-            up = true
+        if(msg == 'UPR'){
+            upR = true
+            downR = false
         }
-        if(msg == 'LEFT'){
-            left = true
+        if(msg == 'LEFTR'){
+            leftR = true
+            rightR = false
         }
-        if(msg == 'RIGHT'){
-            right = true
+        if(msg == 'RIGHTR'){
+            rightR = true
+            leftR = false
         }
-        console.log(msg)
+        if(msg == 'STOPXR'){
+            leftR = false
+            rightR = false
+        }
+        if(msg == 'STOPYR'){
+            upR = false
+            downR = false
+        }
+
+        if(msg =='DOWNB'){
+            downB = true
+            upB = false
+        }
+        if(msg == 'UPB'){
+            upB = true
+            downB = false
+        }
+        if(msg == 'LEFTB'){
+            leftB = true
+            rightB = false
+        }
+        if(msg == 'RIGHTB'){
+            rightB = true
+            leftB = false
+        }
+        if(msg == 'STOPXB'){
+            leftB = false
+            rightB = false
+        }
+        if(msg == 'STOPYB'){
+            upB = false
+            downB = false
+        }
+        // console.log(msg)
     })
+
+    client = mqtt.connect('wss://mqtt.nextservices.dk')
+    client.on('connect', (m) => {
+        console.log('Client connected: ', m)
+        console.log('You are now connected to mqtt.nextservices.dk')
+    })
+
+    //Subscribe til topics
+    // client.subscribe('readyOne')
+
+    //Modtag beskeder
+    // client.on('message', (topic, message) => {
+    //     //Betingelser
+    //     if(topic == 'readyOne'){
+    //         buttonOne.addClass('ready')
+    //         buttonOne.html('READY')
+    //         console.log('Player 1 ready');
+    //         playerOneReady = true
+    //     }
+    // })
+
+
+
 }
 
 
@@ -133,23 +195,24 @@ function draw(){
     lightReset()      
 
 
-    fill('yellow')
+    fill('red')
     noStroke()
-    if(!restarting){
+    if(!restarting){    
         puk.update()
         puk.collide()
         puk.show()
     }
-    circle.show()
-    circle.update(down, up, left, right)
-        puk.xcheck = circle.pos.x
-        puk.ycheck = circle.pos.y
-        puk.speedcheck = circle.vel
-        down = false
-        up = false
-        left = false
-        right = false
+    circleRed.show()
+    circleRed.update(downR, upR, leftR, rightR)
+        puk.xcheck = circleRed.pos.x
+        puk.ycheck = circleRed.pos.y
+        puk.speedcheck = circleRed.vel
 
+    circleBlue.show()
+    circleBlue.update(downB, upB, leftB, rightB)
+        puk.xcheckB = circleBlue.pos.x
+        puk.ycheckB = circleBlue.pos.y
+        puk.speedcheckB = circleBlue.vel
 }
 
 function lightShow(rect, shadow){

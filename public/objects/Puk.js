@@ -7,9 +7,15 @@ class Puk {
       this.radius = 30;
       this.xcheck = 0;
       this.ycheck = 0;
+      this.speedcheck;
+
+      this.xcheckB = 0;
+      this.ycheckB = 0;
+      this.speedcheckB;
+
+
       this.friction = 0.9;
       this.waitFrames = 3
-      this.speedcheck;
     }
   
     collide() {
@@ -19,6 +25,12 @@ class Puk {
 
       let d = dist(this.xcheck, this.ycheck, this.pos.x, this.pos.y);
       if (d <= 80/2) {
+        this.vel.mult(-1);
+        this.vel.add(this.speedcheck);
+      }
+
+      let dB = dist(this.xcheckB, this.ycheckB, this.pos.x, this.pos.y);
+      if (dB <= 80/2) {
         this.vel.mult(-1);
         this.vel.add(this.speedcheck);
       }
@@ -35,9 +47,8 @@ class Puk {
       }
       if (this.pos.x <= 0) {
         score1.play()
-        setTimeout(() => {
-          shock.play()
-        }, 2000);
+        client.publish('shock','shockTwo')
+        shock.play()
         restarting = true
         points1 +=1
         pointDiv11.html(points1)
@@ -46,9 +57,8 @@ class Puk {
       if (this.pos.x >= windowWidth) {
         score2.play()
         restarting = true
-        setTimeout(() => {
-          shock.play()
-        }, 2000);
+        client.publish('shock','shockOne')
+        shock.play()
         points2 +=1
         pointDiv21.html(points2)
         pointDiv22.html(points2)
@@ -101,7 +111,8 @@ class Puk {
 
   
     update() {
-      this.avoidCollision(circle); // Check for collision with the circle before updating position
+      this.avoidCollision(circleRed); // Check for collision with the circle before updating position
+      this.avoidCollision(circleBlue); // Check for collision with the circle before updating position
       this.pos.add(this.vel);
     }
   

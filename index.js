@@ -51,7 +51,8 @@ udpSocket.on('listening', () => {
 
 
 
-udpSocket.on('message', (msg  ) =>{
+udpSocket.on('message', (msg) =>{
+    // console.log(msg)
     console.log(`${msg}`)
     var besked = `${msg}`
     io.emit('movement',`${besked}`)
