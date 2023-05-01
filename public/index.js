@@ -7,6 +7,13 @@ let HøjN = transTime
 let HøjO = transTime
 let VensN = transTime
 let VensO = transTime
+let score1, score2, music, shock, pointDiv11, pointDiv12, pointDiv21, pointDiv22
+let restarting = false
+
+let points1 = 0
+let points2 = 0
+
+
 
 function preload(){
     initSounds()
@@ -14,6 +21,8 @@ function preload(){
 }
 
 function setup(){
+    console.log(pointDiv11)
+
     frameRate(60)
     createCanvas(windowWidth, windowHeight)
     background('black')   
@@ -26,7 +35,6 @@ function setup(){
     strokeWeight(15)
     puk = new Puk(windowWidth/2, windowHeight/2, score1)
     circle = new Circle(3*windowWidth/4, windowHeight/2)
-    
     
     socket = io()
 
@@ -50,8 +58,6 @@ function setup(){
 
 
 function draw(){
-    //mouseX mouseY frameCount map
-    // background(0)
     // fill(60, 255, 255) Dette er gul fill farve
     // fill(50, 0, 255) Dette er hvid fill farve
     background(230, 50, 15)
@@ -129,9 +135,11 @@ function draw(){
 
     fill('yellow')
     noStroke()
-    puk.update()
-    puk.collide()
-    puk.show()
+    if(!restarting){
+        puk.update()
+        puk.collide()
+        puk.show()
+    }
     circle.show()
     circle.update(down, up, left, right)
         puk.xcheck = circle.pos.x
@@ -168,9 +176,17 @@ function lightReset(){
 }
 
 function initSounds(){
-    let score1 = loadSound("./assets/Score1.mp3")
+    score1 = loadSound("./assets/Score1.mp3")
+    score2 = loadSound("./assets/Score2.mp3")
+    shock = loadSound("./assets/shock.mp3")
+    music = loadSound("./assets/GameMusic.mp3")
 }
 
 function initVars(){
 
+    pointDiv11 = select('#LefT')
+    pointDiv12 = select('#RigB')
+    pointDiv21 = select('#LefB')
+    pointDiv22 = select('#RigT')
 }
+

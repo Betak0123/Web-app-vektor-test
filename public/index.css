@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap%27');
 
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto';
+    font-family: 'RaleWay';
     font-size: 1rem;
 }
 
@@ -20,13 +21,48 @@ canvas{
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 0 ;
 }
 
-#info{
-    position: fixed;
+.points1{
     z-index: 5;
-    color: white;
-    right: 2rem;
-    bottom: 2rem;
+    color: red;
+    font-size: 3rem;
     transition: all .3 ease-in-out;
+    position: absolute;
+    text-shadow: 0 0 0 transparent, 0 0 10px #ff003c, 0 0 20px rgba(255, 0, 60, 0.5), 0 0 40px #ff003c, 0 0 100px #ff003c, 0 0 200px #ff003c, 0 0 300px #ff003c, 0 0 50px #ff003c, 0 0 1000px #ff003c;
 }
+.points2{
+    z-index: 5;
+    font-size: 3rem;
+    color: blue;
+    transition: all .3 ease-in-out;
+    text-shadow: 0 0 0 transparent, 0 0 10px #2695ff, 0 0 20px rgba(38, 149, 255, 0.5), 0 0 40px #2695ff, 0 0 100px #2695ff, 0 0 200px #2695ff, 0 0 300px #2695ff, 0 0 50px #2695ff;
+}
+
+#LefT{
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    transform: rotate(90deg);
+}
+#LefB{
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    transform: rotate(90deg);
+}
+#RigT{
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    transform: rotate(-90deg);
+    
+}
+#RigB{
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    transform: rotate(-90deg);
+}
+

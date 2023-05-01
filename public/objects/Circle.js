@@ -11,7 +11,7 @@ class Circle {
 
     }
         update(down, up, left, right) {
-
+            
             if(up){
                 this.vel.set(0,-this.speed)
             }

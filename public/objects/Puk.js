@@ -1,6 +1,6 @@
 
 class Puk {
-    constructor(x, y, score1) {
+    constructor(x, y) {
       this.pos = createVector(x, y);
       this.vel = createVector(3, 0);
       this.score1 = score1
@@ -31,15 +31,28 @@ class Puk {
       if (this.pos.x <= this.radius && this.pos.y <= windowHeight/2-windowHeight/5+5 && this.waitFrames == 3) {
         this.vel.x = this.vel.x * -1;
         VensO = 0
-        this.score1.Friction()
+        this.Friction()
       }
       if (this.pos.x <= 0) {
         score1.play()
-        console.log('Halla min brors!')
+        setTimeout(() => {
+          shock.play()
+        }, 2000);
+        restarting = true
+        points1 +=1
+        pointDiv11.html(points1)
+        pointDiv12.html(points1)
       }
       if (this.pos.x >= windowWidth) {
-        
-        console.log('Halla min brors!')
+        score2.play()
+        restarting = true
+        setTimeout(() => {
+          shock.play()
+        }, 2000);
+        points2 +=1
+        pointDiv21.html(points2)
+        pointDiv22.html(points2)
+
       }
 
       if (this.pos.x >= windowWidth - this.radius && this.pos.y >= windowHeight/2+windowHeight/5+5 && this.waitFrames == 3 ) {
