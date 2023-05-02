@@ -2,7 +2,7 @@
 class Puk {
     constructor(x, y) {
       this.pos = createVector(x, y);
-      this.vel = createVector(3, 0);
+      this.vel = createVector(5, 0);
       this.score1 = score1
       this.radius = 30;
       this.xcheck = 0;
@@ -32,7 +32,7 @@ class Puk {
       let dB = dist(this.xcheckB, this.ycheckB, this.pos.x, this.pos.y);
       if (dB <= 80/2) {
         this.vel.mult(-1);
-        this.vel.add(this.speedcheck);
+        this.vel.add(this.speedcheckB);
       }
 
       if (this.pos.x <= this.radius && this.pos.y >= windowHeight/2+windowHeight/5+5 && this.waitFrames == 3) {

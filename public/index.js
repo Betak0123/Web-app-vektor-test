@@ -197,11 +197,24 @@ function draw(){
 
     fill('red')
     noStroke()
+
     if(!restarting){    
         puk.update()
         puk.collide()
         puk.show()
+    }else{
+        puk.pos.x = windowWidth/2
+        puk.pos.y = windowHeight/2
+        console.log('Yo!')
+        setTimeout(() => {
+            restarting = false
+            circleRed.pos = createVector(9*windowWidth/10, windowHeight/2)
+            circleBlue.pos = createVector(windowWidth/10, windowHeight/2)
+
+
+        }, 6000);
     }
+
     circleRed.show()
     circleRed.update(downR, upR, leftR, rightR)
         puk.xcheck = circleRed.pos.x
