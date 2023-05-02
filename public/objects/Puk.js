@@ -1,8 +1,12 @@
 
 class Puk {
-    constructor(x, y) {
+    constructor(x, y, velx, vely) {
+      this.velx = velx
+      this.vely = vely
+      this.startx = x
+      this.starty = y
       this.pos = createVector(x, y);
-      this.vel = createVector(5, 0);
+      this.vel = createVector(velx, vely);
       this.score1 = score1
       this.radius = 30;
       this.xcheck = 0;
@@ -21,6 +25,33 @@ class Puk {
     collide() {
       if(this.waitFrames < 3){
         this.waitFrames +=1
+      }
+      if (this.pos.x <= 0 && this.pos.y >= windowHeight/2-windowHeight/5+5 && this.pos.y <= windowHeight/2+windowHeight/5+5  && !restarting){
+        // Rød scorer
+        score1.play()
+        client.publish('shock','shockTwo')
+        shock.play()
+        restarting = true
+        starter = 1
+        points1 +=1
+        pointDiv11.html(points1)
+        pointDiv12.html(points1)
+      }
+      if (this.pos.x >= windowWidth && this.pos.y >= windowHeight/2-windowHeight/5+5 && this.pos.y <= windowHeight/2+windowHeight/5+5 && !restarting) {
+        // Blå scorer 
+        score2.play()
+        starter = 0
+        restarting = true
+        client.publish('shock','shockOne')
+        shock.play()
+        points2 +=1
+        pointDiv21.html(points2)
+        pointDiv22.html(points2)
+      }
+
+      if(this.pos.x < -this.radius || this.pos.x > windowWidth + this.radius || this.pos.y < -this.radius || this.pos.y > windowHeight + this.radius){
+        this.pos = createVector(this.startx, this.starty);
+        this.vel = createVector(this.velx, this.vely);
       }
 
       let d = dist(this.xcheck, this.ycheck, this.pos.x, this.pos.y);
@@ -45,25 +76,7 @@ class Puk {
         VensO = 0
         this.Friction()
       }
-      if (this.pos.x <= 0) {
-        score1.play()
-        client.publish('shock','shockTwo')
-        shock.play()
-        restarting = true
-        points1 +=1
-        pointDiv11.html(points1)
-        pointDiv12.html(points1)
-      }
-      if (this.pos.x >= windowWidth) {
-        score2.play()
-        restarting = true
-        client.publish('shock','shockOne')
-        shock.play()
-        points2 +=1
-        pointDiv21.html(points2)
-        pointDiv22.html(points2)
 
-      }
 
       if (this.pos.x >= windowWidth - this.radius && this.pos.y >= windowHeight/2+windowHeight/5+5 && this.waitFrames == 3 ) {
         this.vel.x = this.vel.x * -1;
