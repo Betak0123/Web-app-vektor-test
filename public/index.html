@@ -18,6 +18,9 @@
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="lightning.css">
+    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="readyButton.css">
 
 
 
@@ -30,10 +33,47 @@
 
 
 <body>
-    <h1 id="LefT" class="points1">0</h1>
-    <h1 id="LefB" class="points2">0</h1>
-    <h1 id="RigT" class="points2">0</h1>
-    <h1 id="RigB" class="points1">0</h1>
+    <div id="startScreen">
+        <a id="buttonOne" class="notReady">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Not Ready
+        </a>
+        <a id="buttonTwo" class="notReady">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Not Ready
+        </a>
+        <div id="titleContainer">
+            <div style="display: grid; grid-auto-flow: row;">
+                <span class="webdev">SHOCKY</span>
+                <span class="socod">HOCKEY</span>
+            </div>
+            <div class="lightning-container">
+                <div id="lightBorder">
+                    <div class="lightning-segment"></div>
+                    <div class="lightning-segment"></div>
+                    <div class="lightning-segment"></div>
+                    <div class="lightning-segment"></div>
+                    <div class="lightning-segment"></div>
+                    <div class="lightning-segment"></div>    
+                </div>
+            </div>              
+        </div>
+    </div>
+    <div id="gameScreen">
+        <h1 id="LefT" class="points1">0</h1>
+        <h1 id="LefB" class="points2">0</h1>
+        <h1 id="RigT" class="points2">0</h1>
+        <h1 id="RigB" class="points1">0</h1>
+        <div id="blackTone"></div>
+        <span class="webdev" id="pause">PAUSED</span>
+    </div>
+
 
 </body>
 </html>

@@ -6,7 +6,7 @@ class CircleRed {
         this.pos = createVector(x, y)
         this.vel = createVector(0, 0)
         this.keypress
-        this.speed = 5
+        this.speed = 6
         this.radius = 50
 
     }

@@ -7,6 +7,7 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 
+
 // Derefter importeres Server-klassen fra biblioteket Socket.IO, og der oprettes en Socket.
 const { Server } = require("socket.io")
 const io = new Server(server)
@@ -54,8 +55,12 @@ udpSocket.on('listening', () => {
 udpSocket.on('message', (msg) =>{
     // console.log(msg)
     console.log(`${msg}`)
+    // console.log(msg)
     var besked = `${msg}`
     io.emit('movement',`${besked}`)
+
+    io.emit('spillere',`${besked}`)
+
 }) 
 
 
@@ -68,3 +73,11 @@ udpSocket.on('error', (err) => {
 
 // port, ip adresse, callback
 udpSocket.bind(port,ip.address(),false);
+
+const mqtt = require("mqtt")
+
+client = mqtt.connect('wss://mqtt.nextservices.dk')
+    client.on('connect', () => {
+        //published ip on bongoip mqtt subject
+        client.publish('inf',ip.address())
+    })

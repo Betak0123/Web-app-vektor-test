@@ -29,6 +29,7 @@ class Puk {
       if (this.pos.x <= 0 && this.pos.y >= windowHeight/2-windowHeight/5+5 && this.pos.y <= windowHeight/2+windowHeight/5+5  && !restarting){
         // Rød scorer
         score1.play()
+        goalBoomRed.play()
         client.publish('shock','shockTwo')
         shock.play()
         restarting = true
@@ -36,10 +37,22 @@ class Puk {
         points1 +=1
         pointDiv11.html(points1)
         pointDiv12.html(points1)
+        if(points1 == 3){
+          isPlaying = false
+          pause.html('RED WINS')
+          pause.style('opacity', 100 + '%')
+          pause.style('visibility', 'visible')
+          blackTone.style('opacity', 70 + '%')
+          blackTone.style('visibility', 'visible')
+          setTimeout(() => {
+            location.reload()
+          }, 6000);
+        }
       }
       if (this.pos.x >= windowWidth && this.pos.y >= windowHeight/2-windowHeight/5+5 && this.pos.y <= windowHeight/2+windowHeight/5+5 && !restarting) {
         // Blå scorer 
         score2.play()
+        goalBoomBlue.play()
         starter = 0
         restarting = true
         client.publish('shock','shockOne')
@@ -47,9 +60,21 @@ class Puk {
         points2 +=1
         pointDiv21.html(points2)
         pointDiv22.html(points2)
+        if(points2 == 3){
+          isPlaying = false
+          pause.html('BLUE WINS')
+            pause.style('opacity', 100 + '%')
+            pause.style('visibility', 'visible')
+            blackTone.style('opacity', 70 + '%')
+            blackTone.style('visibility', 'visible')
+          setTimeout(() => {
+            location.reload()
+          }, 6000);
+        }
       }
 
       if(this.pos.x < -this.radius || this.pos.x > windowWidth + this.radius || this.pos.y < -this.radius || this.pos.y > windowHeight + this.radius){
+        console.log('Lidt for vildt brormand')
         this.pos = createVector(this.startx, this.starty);
         this.vel = createVector(this.velx, this.vely);
       }
@@ -58,47 +83,76 @@ class Puk {
       if (d <= 80/2) {
         this.vel.mult(-1);
         this.vel.add(this.speedcheck);
+        HitRed.play()
       }
 
       let dB = dist(this.xcheckB, this.ycheckB, this.pos.x, this.pos.y);
       if (dB <= 80/2) {
         this.vel.mult(-1);
         this.vel.add(this.speedcheckB);
+        HitBlue.play()
+        
       }
 
       if (this.pos.x <= this.radius && this.pos.y >= windowHeight/2+windowHeight/5+5 && this.waitFrames == 3) {
         this.vel.x = this.vel.x * -1;
+        this.bugFixer(VensN)
         VensN = 0
         this.Friction()
+        sideHit.play()
       }
       if (this.pos.x <= this.radius && this.pos.y <= windowHeight/2-windowHeight/5+5 && this.waitFrames == 3) {
         this.vel.x = this.vel.x * -1;
+        this.bugFixer(VensO)
         VensO = 0
         this.Friction()
+        sideHit.play()
       }
 
 
       if (this.pos.x >= windowWidth - this.radius && this.pos.y >= windowHeight/2+windowHeight/5+5 && this.waitFrames == 3 ) {
         this.vel.x = this.vel.x * -1;
+        this.bugFixer(HøjN)
         HøjN = 0
         this.Friction()
+        sideHit.play()
       }
       if (this.pos.x >= windowWidth - this.radius && this.pos.y <= windowHeight/2-windowHeight/5+5 && this.waitFrames == 3) {
         this.vel.x = this.vel.x * -1;
+        this.bugFixer(HøjO)
         HøjO = 0
         this.Friction()
+        sideHit.play()
       }
-
+      
       if (this.pos.y <= this.radius && this.waitFrames == 3) {
         this.vel.y = this.vel.y * -1;
+        this.bugFixer(VandO)
         VandO = 0
         this.Friction()
+        sideHit.play()
       }
-
+      
       if (this.pos.y > windowHeight - this.radius && this.waitFrames == 3) {
         this.vel.y = this.vel.y * -1;
+        this.bugFixer(VandN)
         VandN = 0
         this.Friction()
+        sideHit.play()
+      }
+      // console.log('Collidefixer er: '+collideFixer)
+    }
+    
+    bugFixer(wall){
+      if(wall < 30){
+        console.log('CollideFixer er nu på: ' + collideFixer)
+        collideFixer += 1
+        if(collideFixer > 10 ){
+          this.pos = createVector(this.startx, this.starty);
+          this.vel = createVector(this.velx, this.vely);
+        }
+      }else{
+        collideFixer = 0
       }
     }
 

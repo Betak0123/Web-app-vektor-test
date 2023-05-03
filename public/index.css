@@ -2,27 +2,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap%27');
 
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'RaleWay';
-    font-size: 1rem;
 }
 
-
 body{
+    background-color: black;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-canvas{
-    position: fixed;
-    top: 0;
+
+#startScreen{
+    background-color: black;
+    transition: .3s all ease-in-out;
     left: 0;
-    z-index: 0 ;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 5;
 }
+
+#gameScreen{
+    position: fixed;
+    left: 0vw;
+    height: 100%;
+    width: 100%;
+    z-index:-5;
+    display: grid;
+    place-items: center;
+}
+
+#svg-container{
+    position: absolute;
+    top: 50%;
+    right: 5rem;
+    fill: yellow;
+}
+
+#lyn{
+    fill: yellow;
+}
+/* 
+canvas{
+    z-index: -5 ;
+} */
 
 .points1{
     z-index: 5;
@@ -66,3 +100,13 @@ canvas{
     transform: rotate(-90deg);
 }
 
+#blackTone{
+    transition: .3s all ease-in-out;
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0%;
+    z-index: 10;
+}
