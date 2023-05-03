@@ -356,6 +356,9 @@ function draw(){
     if(playerOneReady == true && playerTwoReady == true && !chillBro ){
         chillBro = true
         setTimeout(() => {
+            location.reload()
+        }, 600000);
+        setTimeout(() => {
             startScreen.style('left', -100 + 'vw')
             music.play()
             setInterval(() => {
