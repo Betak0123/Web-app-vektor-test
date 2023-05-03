@@ -60,11 +60,11 @@ class Puk {
         points2 +=1
         pointDiv21.html(points2)
         pointDiv22.html(points2)
-        if(points2 == 3){
+        if(points2 == 1){
           isPlaying = false
-          pause.html('BLUE WINS')
-            pause.style('opacity', 100 + '%')
-            pause.style('visibility', 'visible')
+          // pause.html('BLUE WINS')
+            blueWin.style('opacity', 100 + '%')
+            blueWin.style('visibility', 'visible')
             blackTone.style('opacity', 70 + '%')
             blackTone.style('visibility', 'visible')
           setTimeout(() => {

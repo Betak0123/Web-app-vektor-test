@@ -26,7 +26,7 @@ let playerOneReady = false
 let playerTwoReady = false
 let isPlaying = false
 
-let titleSound
+let titleSound, blueWin
 
 
 
@@ -365,10 +365,8 @@ function draw(){
             setTimeout(() => {
                 isPlaying = true
                 pause.html('GO!')
-                setTimeout(() => {
-                    pause.style('opacity', 0 + '%')
-                    pause.style('visibility', 'hidden')
-                }, 200);
+                pause.style('opacity', 0 + '%')
+                pause.style('visibility', 'hidden')
             }, 3000);
         }, 500);
 
@@ -385,7 +383,7 @@ function timeshow (time){
     if(time > 0){
         setTimeout(() => {
             timeshow(time-1)
-        }, 900);
+        }, 950);
     }
     // blackTone.style('opacity', 70 + '%')
     // blackTone.style('visibility', 'visible')
@@ -439,6 +437,7 @@ function initVars(){
     buttonTwo = select('#buttonTwo')
     pause = select('#pause')
     blackTone = select('#blackTone')
+    blueWin = select('#blueWin')
 }
 
 function keyPressed(){
