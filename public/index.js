@@ -444,19 +444,19 @@ function initVars(){
 }
 
 function keyPressed(){
-    if(keyCode == RIGHT_ARROW){
+    if(keyCode == 72){
         client.publish('readyOne')
     }
-    if(keyCode == LEFT_ARROW){
+    if(keyCode == 71){
         client.publish('readyTwo')
     }
 }
 
 function keyReleased(){
-    if(keyCode == RIGHT_ARROW){
+    if(keyCode == 72){
         client.publish('notReadyOne')
     }
-    if(keyCode == LEFT_ARROW){
+    if(keyCode == 71){
         client.publish('notReadyTwo')
     }
 }

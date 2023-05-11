@@ -57,31 +57,31 @@ class CircleBlue {
             this.pos.add(this.vel)
 
 
-            // if(keyIsDown(UP_ARROW)){
+            // if(keyIsDown(87)){
             //     this.vel.set(0,-this.speed)
             // }
-            // if(keyIsDown(DOWN_ARROW)){
+            // if(keyIsDown(83)){
             //     this.vel.set(0,this.speed)
             // }
-            // if(keyIsDown(RIGHT_ARROW)){
+            // if(keyIsDown(68)){
             //     this.vel.set(this.speed,0)
             // }
-            // if(keyIsDown(LEFT_ARROW)){
+            // if(keyIsDown(65)){
             //     this.vel.set(-this.speed,0)
             // }
-            // if(keyIsDown(UP_ARROW) && keyIsDown(LEFT_ARROW)){
+            // if(keyIsDown(87) && keyIsDown(65)){
             //     this.vel.set(-this.speed,-this.speed)
             // }
-            // if(keyIsDown(UP_ARROW) && keyIsDown(RIGHT_ARROW)){
+            // if(keyIsDown(87) && keyIsDown(68)){
             //     this.vel.set(this.speed,-this.speed)
             // }
-            // if(keyIsDown(DOWN_ARROW) && keyIsDown(RIGHT_ARROW)){
+            // if(keyIsDown(83) && keyIsDown(68)){
             //     this.vel.set(this.speed,this.speed)
             // }
-            // if(keyIsDown(DOWN_ARROW) && keyIsDown(LEFT_ARROW)){
+            // if(keyIsDown(83) && keyIsDown(65)){
             //     this.vel.set(-this.speed,this.speed)
             // }
-            // if(!keyIsDown(DOWN_ARROW) && !keyIsDown(RIGHT_ARROW) && !keyIsDown(UP_ARROW) && !keyIsDown(LEFT_ARROW)){
+            // if(!keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87) && !keyIsDown(65)){
             //     this.vel.set(0,0)
             // }
             // this.pos.add(this.vel)
